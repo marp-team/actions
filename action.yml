@@ -1,0 +1,9 @@
+name: Common action for Marp team
+description: Common action for Marp team
+author: Marp team
+inputs:
+  task:
+    description: The name of task
+runs:
+  using: node12
+  main: lib/main.js
