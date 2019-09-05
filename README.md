@@ -6,7 +6,7 @@ Common [GitHub Actions] and scripts for [Marp team](https://github.com/marp-team
 jobs:
   something:
     steps:
-      - uses: marp-team/actions@v0
+      - uses: marp-team/actions@v1
         with:
           task: release
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: marp-team/actions@v0
+      - uses: marp-team/actions@v1
         with:
           task: release
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -54,7 +54,7 @@ This repository also provides a helper script of `npm version` for including upd
 // package.json
 {
   "scripts": {
-    "version": "curl https://raw.githubusercontent.com/marp-team/actions/v0/lib/scripts/version.js | node && git add -A CHANGELOG.md"
+    "version": "curl https://raw.githubusercontent.com/marp-team/actions/v1/lib/scripts/version.js | node && git add -A CHANGELOG.md"
   }
 }
 ```
