@@ -28,7 +28,8 @@
     "build": "tsc",
     "check:format": "yarn -s format -c",
     "format": "prettier \"**/*.{js,json,md,ts,yaml,yml}\"",
-    "test": "jest"
+    "test": "jest",
+    "version": "git fetch --tags -f"
   },
   "dependencies": {
     "@actions/core": "^1.1.0",
