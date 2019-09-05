@@ -4,6 +4,10 @@ author: Marp team
 inputs:
   task:
     description: The name of task
+    required: true
+  token:
+    description: Token string for GitHub
+    required: true
 runs:
   using: node12
   main: lib/main.js
