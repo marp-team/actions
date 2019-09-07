@@ -8,6 +8,10 @@ inputs:
   token:
     description: Token string for GitHub
     required: true
+
+  # "upload" task
+  files:
+    description: Comma-separated string for upload files or directories
 runs:
   using: node12
   main: lib/main.js

@@ -46,6 +46,34 @@ jobs:
 - `task` (required): Must be `release`.
 - `token` (required): GitHub token.
 
+### `upload`: Upload assets to existing GitHub Release
+
+Upload files to existing GitHub release for specified version.
+
+```yaml
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: marp-team/actions@v1
+        with:
+          task: upload
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: dist,pkg/xxxxxxxx.zip
+```
+
+#### Inputs
+
+- `task` (required): Must be `upload`.
+- `token` (required): GitHub token.
+- `files` (required): Comma-separated string for upload files or directories.
+
 ## `npm version` helper script
 
 This repository also provides a helper script of `npm version` for including update of `CHANGELOG.md` to bumped commit.
