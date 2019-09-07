@@ -10,7 +10,7 @@ async function run() {
       case 'release':
         await release({ token: get('token') })
         break
-      case 'release':
+      case 'upload':
         await upload({ token: get('token'), files: get('files').split(',') })
     }
   } catch (error) {
