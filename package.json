@@ -32,17 +32,17 @@
     "version": "git fetch --tags -f"
   },
   "dependencies": {
-    "@actions/core": "^1.1.0",
+    "@actions/core": "^1.2.0",
     "@actions/github": "^1.1.0",
-    "mime-types": "^2.1.24"
+    "mime-types": "^2.1.25"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.13",
+    "@types/jest": "^24.0.23",
     "@types/mime-types": "^2.1.0",
-    "@types/node": "^12.7.4",
+    "@types/node": "^12.12.9",
     "jest": "^24.8.0",
-    "prettier": "^1.18.2",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.5.1"
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.7.2"
   }
 }
