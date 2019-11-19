@@ -89,7 +89,7 @@ This repository also provides a helper script of `npm version` for including upd
 
 ## Development
 
-We are following [the contributing guideline of marp-team projects](https://github.com/marp-team/marp/blob/master/.github/CONTRIBUTING.md). Please read these guidelines this before starting work in this repository.
+We are following [the contributing guideline of marp-team projects](https://github.com/marp-team/.github/blob/master/CONTRIBUTING.md). Please read these guidelines this before starting work in this repository.
 
 ### Release
 
