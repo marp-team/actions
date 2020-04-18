@@ -13,7 +13,7 @@ const stat = util.promisify(fs.stat)
 const resolveFiles = async (files: string[]) => {
   const ret: string[] = []
 
-  for (const f of files.map(f => path.resolve(process.cwd(), f))) {
+  for (const f of files.map((f) => path.resolve(process.cwd(), f))) {
     try {
       const fstat = await stat(f)
 
@@ -22,8 +22,8 @@ const resolveFiles = async (files: string[]) => {
       } else if (fstat.isDirectory()) {
         ret.push(
           ...(await readdir(f, { withFileTypes: true }))
-            .filter(d => !d.isDirectory())
-            .map(d => path.resolve(f, d.name))
+            .filter((d) => !d.isDirectory())
+            .map((d) => path.resolve(f, d.name))
         )
       }
     } catch (e) {
