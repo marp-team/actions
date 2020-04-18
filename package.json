@@ -21,8 +21,7 @@
   "main": "lib/main.js",
   "prettier": {
     "semi": false,
-    "singleQuote": true,
-    "trailingComma": "es5"
+    "singleQuote": true
   },
   "scripts": {
     "build": "tsc",
@@ -32,17 +31,17 @@
     "version": "git fetch --tags -f"
   },
   "dependencies": {
-    "@actions/core": "^1.2.0",
-    "@actions/github": "^1.1.0",
-    "mime-types": "^2.1.25"
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1",
+    "mime-types": "^2.1.26"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.23",
+    "@types/jest": "^25.2.1",
     "@types/mime-types": "^2.1.0",
-    "@types/node": "^12.12.9",
-    "jest": "^24.8.0",
-    "prettier": "^1.19.1",
-    "ts-jest": "^24.1.0",
-    "typescript": "^3.7.2"
+    "@types/node": "^12.12.36",
+    "jest": "^25.3.0",
+    "prettier": "^2.0.4",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
   }
 }
