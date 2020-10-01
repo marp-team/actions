@@ -31,7 +31,7 @@
     "version": "git fetch --tags -f"
   },
   "dependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.2.6",
     "@actions/github": "^2.1.1",
     "mime-types": "^2.1.26"
   },
