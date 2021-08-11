@@ -3,10 +3,11 @@ import fs from 'fs'
 import util from 'util'
 import path from 'path'
 import { debug } from '@actions/core'
-import { context, GitHub } from '@actions/github'
+import { context, getOctokit } from '@actions/github'
 import mime from 'mime-types'
 import { ReleaseOptions } from './release'
 
+const readFile = util.promisify(fs.readFile)
 const readdir = util.promisify(fs.readdir)
 const stat = util.promisify(fs.stat)
 
@@ -43,7 +44,7 @@ export type UploadOptions = ReleaseOptions & {
  * Upload files to GitHub release for specified version.
  */
 export default async function upload(opts: UploadOptions) {
-  const octokit = new GitHub(opts.token)
+  const octokit = getOctokit(opts.token)
   const version =
     opts.version ||
     (() => {
@@ -54,8 +55,8 @@ export default async function upload(opts: UploadOptions) {
   const files = await resolveFiles(opts.files)
   assert(files.length, 'Files for uploading are not found.')
 
-  // Get existed release
-  const { data } = await octokit.repos.getReleaseByTag({
+  // Get existing release
+  const { data } = await octokit.rest.repos.getReleaseByTag({
     owner: context.repo.owner,
     repo: context.repo.repo,
     tag: version,
@@ -66,15 +67,18 @@ export default async function upload(opts: UploadOptions) {
     debug(`Uploading ${f}...`)
 
     const { size } = await stat(f)
+    const buf = await readFile(f)
 
-    await octokit.repos.uploadReleaseAsset({
-      file: fs.createReadStream(f),
+    await octokit.rest.repos.uploadReleaseAsset({
+      owner: context.repo.owner,
+      repo: context.repo.repo,
+      release_id: data.id,
+      name: path.basename(f),
       headers: {
         'content-type': mime.lookup(f) || 'application/octet-stream',
         'content-length': size,
       },
-      name: path.basename(f),
-      url: data.upload_url,
+      data: buf as any, // https://github.com/octokit/types.ts/issues/73
     })
   }
 }
