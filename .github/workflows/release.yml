@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: validate
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - run: yarn install && yarn build
 
       - name: Push tag for released action
