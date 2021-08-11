@@ -1,7 +1,7 @@
 import fs from 'fs'
 import util from 'util'
 import path from 'path'
-import { context, GitHub } from '@actions/github'
+import { context, getOctokit } from '@actions/github'
 
 const readFile = util.promisify(fs.readFile)
 
@@ -17,7 +17,7 @@ export type ReleaseOptions = {
  * Update GitHub release for specified version based on parsed contents from CHANGELOG.md.
  */
 export default async function release(opts: ReleaseOptions) {
-  const octokit = new GitHub(opts.token)
+  const octokit = getOctokit(opts.token)
   const version =
     opts.version ||
     (() => {
@@ -49,7 +49,7 @@ export default async function release(opts: ReleaseOptions) {
   }
 
   // Create GitHub release
-  await octokit.repos.createRelease({
+  await octokit.rest.repos.createRelease({
     body,
     name: version,
     owner: context.repo.owner,
