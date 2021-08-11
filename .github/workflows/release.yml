@@ -29,13 +29,10 @@ jobs:
           git add -f lib node_modules
           git commit -m "${GITHUB_REF:10} release"
           git tag "${GITHUB_REF:10}-release"
-          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          git push --tags
+          git push origin refs/tags/${GITHUB_REF:10}-release
 
           if [[ ${GITHUB_REF:10} =~ ^(v[0-9]+)\.[^-]+$ ]]; then
             git push origin :refs/tags/${BASH_REMATCH[1]}
             git tag -f ${BASH_REMATCH[1]}
-            git push --tags
+            git push origin refs/tags/${BASH_REMATCH[1]}
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
