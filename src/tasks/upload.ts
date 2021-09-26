@@ -27,7 +27,7 @@ const resolveFiles = async (files: string[]) => {
             .map((d) => path.resolve(f, d.name))
         )
       }
-    } catch (e) {
+    } catch (e: any) {
       if (e.code !== 'ENOENT') throw e
     }
   }

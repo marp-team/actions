@@ -11,15 +11,22 @@ export type ReleaseOptions = {
 
   /** Target version tag. We will use the name tagged in the current action if empty. */
   version?: string
+
+  /** Convert Markdown link to GitHub profile into the mention link of GitHub. */
+  convertGitHubMention?: boolean
 }
 
 /**
  * Update GitHub release for specified version based on parsed contents from CHANGELOG.md.
  */
-export default async function release(opts: ReleaseOptions) {
-  const octokit = getOctokit(opts.token)
+export default async function release({
+  token,
+  version: _version,
+  convertGitHubMention = true,
+}: ReleaseOptions) {
+  const octokit = getOctokit(token)
   const version =
-    opts.version ||
+    _version ||
     (() => {
       if (context.ref.startsWith('refs/tags/')) return context.ref.slice(10)
       throw new Error('Release task failed to detect the target version.')
@@ -42,10 +49,17 @@ export default async function release(opts: ReleaseOptions) {
     }
   }
 
-  const body = current.body.trim()
+  let body = current.body.trim()
 
   if (!body) {
     throw new Error(`Not found the content of release note for ${version}.`)
+  }
+
+  if (convertGitHubMention) {
+    body = body.replace(
+      /\[@([a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38})\]\(https?:\/\/github\.com\/\1\/?\)/gi,
+      '@$1'
+    )
   }
 
   // Create GitHub release
