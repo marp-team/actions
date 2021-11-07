@@ -50,7 +50,7 @@ jobs:
 <details>
 <summary>Details about <code>convertGitHubMention</code></summary>
 
-For giving honor, `CHANGELOG.md` may mention to outside contributors who made a good improvement (e.g. Bug fix, critical update of docs, and so on. Minor fix such as typo may not mention to the contributor).
+To give credit, `CHANGELOG.md` may mention to outside contributors who made a good improvement (e.g. Bug fix, critical update of docs, and so on. Minor fix such as typo may not mention the contributor).
 
 We are using a traditional Markdown link into GitHub profile page to keep accessible when reading `CHANGELOG.md` directly, but using `@mention` syntax for GitHub releases is better because of [the avatar list for to highlight and celebrate our collaborators.](https://github.blog/changelog/2021-09-14-releases-now-have-an-avatar-list/)
 
