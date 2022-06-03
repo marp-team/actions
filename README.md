@@ -45,6 +45,7 @@ jobs:
 
 - `task` (required): Must be `release`.
 - `token` (required): GitHub token.
+- `preRelease` (optional): Mark or not the release as pre-release. If not defined, detect the right value automatically from the version, [by following Marp project guideline.](https://github.com/marp-team/.github/blob/master/CONTRIBUTING.md#pre-release)
 
 <!--
 - `convertGitHubMention` (optional: `true` by default): Set whether to convert Markdown links to GitHub profile like `[@marp-team](https://github.com/marp-team/)` into a plain GitHub mention.
