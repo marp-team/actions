@@ -9,6 +9,9 @@ export type ReleaseOptions = {
   /** Target version tag. We will use the name tagged in the current action if empty. */
   version?: string
 
+  /** Mark the release as pre-release. If not defined, detect the right value automatically from the version, by following Marp project guideline. */
+  preRelease?: boolean
+
   /** Convert Markdown link to GitHub profile into the mention link of GitHub. */
   convertGitHubMention?: boolean
 }
@@ -19,6 +22,7 @@ export type ReleaseOptions = {
 export default async function release({
   token,
   version: _version,
+  preRelease = undefined,
   convertGitHubMention = true,
 }: ReleaseOptions) {
   const octokit = getOctokit(token)
@@ -28,6 +32,8 @@ export default async function release({
       if (context.ref.startsWith('refs/tags/')) return context.ref.slice(10)
       throw new Error('Release task failed to detect the target version.')
     })()
+  const isPreRelease =
+    preRelease !== undefined ? preRelease : version.startsWith('v0.0.')
 
   // Parse CHANGELOG.md
   const changelog = path.resolve(process.cwd(), 'CHANGELOG.md')
@@ -64,7 +70,7 @@ export default async function release({
     body,
     name: version,
     owner: context.repo.owner,
-    prerelease: version.startsWith('v0.0.'),
+    prerelease: isPreRelease,
     repo: context.repo.repo,
     tag_name: version,
   })

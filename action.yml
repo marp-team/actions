@@ -10,8 +10,8 @@ inputs:
     required: true
 
   # "release" task
-  convertGitHubMention:
-    description: Set whether to convert Markdown links to GitHub profile into a plain GitHub mention
+  preRelease:
+    description: Mark the release as pre-release
 
   # "upload" task
   files:
