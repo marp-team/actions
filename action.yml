@@ -17,5 +17,5 @@ inputs:
   files:
     description: Comma-separated string for upload files or directories
 runs:
-  using: node12
+  using: node16
   main: lib/main.js

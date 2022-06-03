@@ -13,8 +13,8 @@ async function run() {
       case 'upload':
         await upload({ token: get('token'), files: get('files').split(',') })
     }
-  } catch (error) {
-    core.setFailed(error.message)
+  } catch (e: unknown) {
+    core.setFailed(e instanceof Error ? e : 'Unknown error')
   }
 }
 

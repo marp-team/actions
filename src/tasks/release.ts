@@ -1,9 +1,6 @@
-import fs from 'fs'
-import util from 'util'
+import fs from 'fs/promises'
 import path from 'path'
 import { context, getOctokit } from '@actions/github'
-
-const readFile = util.promisify(fs.readFile)
 
 export type ReleaseOptions = {
   /** Token string for GitHub. */
@@ -34,7 +31,7 @@ export default async function release({
 
   // Parse CHANGELOG.md
   const changelog = path.resolve(process.cwd(), 'CHANGELOG.md')
-  const content = await readFile(changelog, 'utf8')
+  const content = await fs.readFile(changelog, 'utf8')
   const current = { parsing: false, body: '' }
 
   for (const line of content.split('\n')) {
