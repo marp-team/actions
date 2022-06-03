@@ -4,12 +4,30 @@ on:
   - pull_request
   - push
 
+env:
+  YARN_VERSION: '^1.22.19'
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: yarn install
+      - uses: actions/checkout@v3
+
+      - name: Install yarn
+        id: yarn
+        run: |
+          cd $HOME && yarn policies set-version $YARN_VERSION
+          echo "::set-output name=cache_dir::$(yarn cache dir)"
+
+      - name: Cache yarn
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn.outputs.cache_dir }}
+          key: yarn_cache-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn_cache-${{ runner.os }}-
+
+      - run: yarn install --frozen-lockfile
       - run: yarn audit
       - run: yarn check:format
       - run: yarn test --coverage --ci -i
