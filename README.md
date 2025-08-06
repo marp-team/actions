@@ -55,7 +55,7 @@ jobs:
 
 For giving honor, `CHANGELOG.md` may mention to outside contributors who made a good improvement (e.g. Bug fix, critical update of docs, and so on. Minor fix such as typo may not mention to the contributor).
 
-We are using a traditional Markdown link to link to GitHub profile page to keep accessible when reading `CHANGELOG.md` directly, but using `@mention` syntax for GitHub releases is better because of [the avatar list to highlight and celebrate our collaborators.](https://github.blog/changelog/2021-09-14-releases-now-have-an-avatar-list/)
+We are using a traditional Markdown link to link to GitHub profile pages to keep accessible when reading `CHANGELOG.md` directly, but using `@mention` syntax for GitHub releases is better because of [the avatar list to highlight and celebrate our collaborators.](https://github.blog/changelog/2021-09-14-releases-now-have-an-avatar-list/)
 
 </details>
 -->
